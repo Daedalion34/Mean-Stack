@@ -1,0 +1,19 @@
+<div>
+  <span>Ma carte et spots</span>
+  <ui-gmap-google-map center="map.center" zoom="map.zoom" bounds="map.bounds" options="options">
+    <!-- On centre la map a Montpellier avec un zoom de 8 et en fonction de la taille:
+  bounds calcule les points SW et NE -->
+    <ui-gmap-marker ng-repeat="spot in mapMarkers | filter:{hobby:query}" idKey="$index" coords="mapMarkers[$index].loc.coordinates">
+      <!-- pour chaque spots dans mapMarkers ng-repeat la marker avec un filtre dans l'input -->
+      <!-- idKey: obligatoire => 1, 2, 3 ... -->
+      <!-- coords de chaque marker -->
+      <ui-gmap-window isIconVisibleOnClick="true">
+        <p>{{mapMarkers[$index].name}}</p>
+      </ui-gmap-window>
+    </ui-gmap-marker>
+  </ui-gmap-google-map>
+
+  <input type="text" ng-model="query">
+
+  <span ng-click="debug()">DEBUG</span>
+</div>
